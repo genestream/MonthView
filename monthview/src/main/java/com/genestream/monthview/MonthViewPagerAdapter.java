@@ -14,7 +14,7 @@ import java.util.Calendar;
 public class MonthViewPagerAdapter extends PagerAdapter {
 
     public static final int PREV = 0;
-    public static final int POITING = 1;
+    public static final int POINTING = 1;
     public static final int NEXT = 2;
     private static final int NUM = 3;
 
@@ -45,16 +45,17 @@ public class MonthViewPagerAdapter extends PagerAdapter {
         }
     }
 
-    public void init() {
-        setup(mPointingDay);
-    }
-
     public void setup(Calendar pointingDay) {
         mPointingDay = (Calendar) pointingDay.clone();
         refresh(mPointingDay);
     }
 
-    public void refresh(Calendar day) {
+    private void refresh(Calendar day) {
+
+        for (int i = PREV; i <= NEXT; i++) {
+            destroyItem(mParent, i, mMonthItemViews[i]);
+        }
+
         mCalendar = (Calendar) day.clone();
         mCalendar.set(Calendar.DAY_OF_MONTH, 1);
 
@@ -64,14 +65,12 @@ public class MonthViewPagerAdapter extends PagerAdapter {
         mMonthItemViews[PREV] = prevMonthView;
 
         iteratorCalendar.add(Calendar.MONTH, 1);
-        MonthView pointinMonthView = makeMonthItemView(iteratorCalendar);
-        mMonthItemViews[POITING] = pointinMonthView;
+        MonthView pointingMonthView = makeMonthItemView(iteratorCalendar);
+        mMonthItemViews[POINTING] = pointingMonthView;
 
         iteratorCalendar.add(Calendar.MONTH, 1);
         MonthView nextMonthView = makeMonthItemView(iteratorCalendar);
         mMonthItemViews[NEXT] = nextMonthView;
-
-        mParent.setCurrentItem(POITING, true);
         notifyDataSetChanged();
     }
 
@@ -80,8 +79,8 @@ public class MonthViewPagerAdapter extends PagerAdapter {
         if (month == mMonthItemViews[PREV].getMonth()) {
             destroyItem(mParent, NEXT, mMonthItemViews[NEXT]);
 
-            mMonthItemViews[NEXT] = mMonthItemViews[POITING];
-            mMonthItemViews[POITING] = mMonthItemViews[PREV];
+            mMonthItemViews[NEXT] = mMonthItemViews[POINTING];
+            mMonthItemViews[POINTING] = mMonthItemViews[PREV];
 
             Calendar newPrevCalendar = (Calendar) mMonthItemViews[PREV].getDay().clone();
             newPrevCalendar.add(Calendar.MONTH, -1);
@@ -89,13 +88,13 @@ public class MonthViewPagerAdapter extends PagerAdapter {
 
             mMonthItemViews[PREV] = prevMonthView;
             notifyDataSetChanged();
-            mParent.setCurrentItem(POITING, true);
+            mParent.setCurrentItem(POINTING);
 
         } else if (month == mMonthItemViews[NEXT].getMonth()) {
             destroyItem(mParent, PREV, mMonthItemViews[PREV]);
 
-            mMonthItemViews[PREV] = mMonthItemViews[POITING];
-            mMonthItemViews[POITING] = mMonthItemViews[NEXT];
+            mMonthItemViews[PREV] = mMonthItemViews[POINTING];
+            mMonthItemViews[POINTING] = mMonthItemViews[NEXT];
 
             Calendar newNextCalendar = (Calendar) mMonthItemViews[NEXT].getDay().clone();
             newNextCalendar.add(Calendar.MONTH, 1);
@@ -103,7 +102,7 @@ public class MonthViewPagerAdapter extends PagerAdapter {
 
             mMonthItemViews[NEXT] = nextMonthView;
             notifyDataSetChanged();
-            mParent.setCurrentItem(POITING, true);
+            mParent.setCurrentItem(POINTING);
         } else {
             refresh(calendar);
         }
@@ -121,7 +120,7 @@ public class MonthViewPagerAdapter extends PagerAdapter {
     }
 
     public MonthView getCurrentItem() {
-        return mMonthItemViews[POITING];
+        return mMonthItemViews[POINTING];
     }
 
     public MonthView getItem(int position) {
