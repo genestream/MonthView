@@ -110,7 +110,7 @@ public class MonthViewPager extends ViewPager {
         post(new Runnable() {
             @Override
             public void run() {
-                setCurrentItem(1, false);
+                setCurrentItem(MonthViewPagerAdapter.POINTING, false);
                 mScrollEnable = true;
                 setOnPageChangeListener(mOnPageChangeListener);
             }

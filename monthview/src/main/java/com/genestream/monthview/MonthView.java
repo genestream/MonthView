@@ -45,10 +45,6 @@ public class MonthView extends GridView {
         }
     }
 
-    public void setPointingDay(Calendar pointingDay) {
-        mAdapter.setPointingDay(pointingDay);
-    }
-
     public int getYear() {
         return mDay.get(Calendar.YEAR);
     }

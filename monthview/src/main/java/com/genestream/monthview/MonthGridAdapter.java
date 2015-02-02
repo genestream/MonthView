@@ -103,9 +103,4 @@ public class MonthGridAdapter extends ArrayAdapter<Calendar> {
                 && (cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH))
                 && (cal1.get(Calendar.DATE) == cal2.get(Calendar.DATE));
     }
-
-    public void setPointingDay(Calendar pointingDay) {
-        mPointingDay = (Calendar) pointingDay.clone();
-        notifyDataSetInvalidated();
-    }
 }
