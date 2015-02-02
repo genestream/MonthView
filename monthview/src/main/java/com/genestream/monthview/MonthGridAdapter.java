@@ -66,7 +66,7 @@ public class MonthGridAdapter extends ArrayAdapter<Calendar> {
             convertView = mInflater.inflate(R.layout.view_month_item, null);
         }
         final Calendar day = getItem(position);
-        TextView dayView = (TextView) convertView.findViewById(R.id.content);
+        TextView dayView = (TextView) convertView.findViewById(R.id.month_view_item_content);
         dayView.setText("" + day.get(Calendar.DATE));
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

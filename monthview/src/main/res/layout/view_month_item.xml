@@ -7,7 +7,7 @@
     android:padding="8dp"
     >
     <com.genestream.monthview.SquareTextView
-        android:id="@+id/content"
+        android:id="@+id/month_view_item_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
