@@ -1,4 +1,4 @@
-package com.notame.monthview;
+package com.genestream.monthview;
 
 import java.util.Calendar;
 

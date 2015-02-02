@@ -1,4 +1,4 @@
-package com.notame.monthview;
+package com.genestream.monthview;
 
 import android.content.Context;
 import android.util.AttributeSet;

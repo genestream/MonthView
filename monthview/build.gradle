@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "com.notame.monthview"
+        applicationId "com.genestream.monthview"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
@@ -33,8 +33,8 @@ uploadArchives {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
             pom.version = '0.9.0'             // version
-            pom.groupId = 'com.notame'    // グループ名
-            pom.artifactId = 'month_view' // ライブラリ名
+            pom.groupId = 'com.genestream'    // グループ名
+            pom.artifactId = 'monthview' // ライブラリ名
         }
     }
 }
