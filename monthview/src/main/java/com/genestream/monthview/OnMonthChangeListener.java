@@ -6,5 +6,5 @@ import java.util.Calendar;
  * @author kgmyshin
  */
 public interface OnMonthChangeListener {
-    void onChange(Calendar calendar);
+    public void onChange(Calendar calendar);
 }

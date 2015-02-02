@@ -39,7 +39,9 @@ public class MonthViewPagerAdapter extends PagerAdapter {
     public void setOnDayClickListener(OnDayClickListener onDayClickListener) {
         mOnDayClickListener = onDayClickListener;
         for (MonthView monthView : mMonthItemViews) {
-            monthView.setOnDayClickListener(mOnDayClickListener);
+            if (monthView != null) {
+                monthView.setOnDayClickListener(mOnDayClickListener);
+            }
         }
     }
 
