@@ -43,6 +43,8 @@ public class MonthViewPager extends ViewPager {
 
         }
     };
+    private OnMonthChangeListener mOnMonthChangeListener;
+    private OnDayClickListener mOnDayClickListener;
 
     public MonthViewPager(Context context) {
         this(context, null);
@@ -54,9 +56,6 @@ public class MonthViewPager extends ViewPager {
     }
 
     private void init() {
-        mAdapter = new MonthViewPagerAdapter(getContext(), this);
-        setAdapter(mAdapter);
-        setOnPageChangeListener(mOnPageChangeListener);
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setDuration(100);
         layoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
@@ -92,15 +91,32 @@ public class MonthViewPager extends ViewPager {
     }
 
     public void setOnMonthChangeListener(OnMonthChangeListener onMonthChangeListener) {
-        mAdapter.setOnMonthChangeListener(onMonthChangeListener);
+        mOnMonthChangeListener = onMonthChangeListener;
+        mAdapter.setOnMonthChangeListener(mOnMonthChangeListener);
     }
 
     public void setOnDayClickListener(OnDayClickListener onDayClickListener) {
-        mAdapter.setOnDayClickListener(onDayClickListener);
+        mOnDayClickListener = onDayClickListener;
+        mAdapter.setOnDayClickListener(mOnDayClickListener);
     }
 
     public void setup(Calendar pointingDay) {
+        mScrollEnable = false;
+        setAdapter(null);
+        setOnPageChangeListener(null);
+        mAdapter = new MonthViewPagerAdapter(getContext(), this);
+        setAdapter(mAdapter);
         mAdapter.setup(pointingDay);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                setCurrentItem(1, false);
+                mScrollEnable = true;
+                setOnPageChangeListener(mOnPageChangeListener);
+            }
+        });
+        mAdapter.setOnMonthChangeListener(mOnMonthChangeListener);
+        mAdapter.setOnDayClickListener(mOnDayClickListener);
     }
 
     @Override

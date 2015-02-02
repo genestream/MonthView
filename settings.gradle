@@ -1,1 +1,1 @@
-include ':monthview'
+include ':monthview', ':demo'
