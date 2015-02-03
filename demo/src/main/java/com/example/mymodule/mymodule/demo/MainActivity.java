@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 
         monthTextView.setText("" + calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月");
 
-        monthViewPager.setup(calendar);
+        monthViewPager.setup(calendar, Calendar.MONDAY);
         monthViewPager.setOnMonthChangeListener(new OnMonthChangeListener() {
             @Override
             public void onChange(Calendar calendar) {
@@ -40,9 +40,7 @@ public class MainActivity extends Activity {
         monthViewPager.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(Calendar calendar) {
-                Calendar calendar1 = (Calendar) calendar.clone();
-                calendar1.add(Calendar.MONTH, 2);
-                monthViewPager.setup(calendar1);
+                monthViewPager.setup(calendar, Calendar.MONDAY);
             }
         });
     }

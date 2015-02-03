@@ -37,7 +37,10 @@ public class MonthGridAdapter extends ArrayAdapter<Calendar> {
         Calendar iterator = (Calendar) mDay.clone();
         int month = iterator.get(Calendar.MONTH);
         int lastDay = iterator.getActualMaximum(Calendar.DATE);
-        iterator.set(Calendar.DAY_OF_WEEK, 1);
+        iterator.set(Calendar.DAY_OF_WEEK, MonthViewInfo.START);
+        if (iterator.get(Calendar.MONTH) == month && iterator.get(Calendar.DATE) > 1) {
+            iterator.add(Calendar.DATE, -7);
+        }
         boolean finish = false;
         while (!finish) {
             mLine++;

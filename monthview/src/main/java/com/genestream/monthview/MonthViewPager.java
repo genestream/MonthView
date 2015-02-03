@@ -100,7 +100,8 @@ public class MonthViewPager extends ViewPager {
         mAdapter.setOnDayClickListener(mOnDayClickListener);
     }
 
-    public void setup(Calendar pointingDay) {
+    public void setup(Calendar pointingDay, int startDay) {
+        MonthViewInfo.START = startDay;
         mScrollEnable = false;
         setAdapter(null);
         setOnPageChangeListener(null);
