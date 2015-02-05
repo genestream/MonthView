@@ -15,8 +15,6 @@ import java.util.Calendar;
 
 public class MainActivity extends Activity {
 
-    public Calendar pointing;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
