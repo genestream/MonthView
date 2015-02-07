@@ -1,5 +1,7 @@
 #MonthView
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MonthView-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1492)
+
 MonthView is an android library to display month calendar within the app. 
 
 <img src="https://raw.githubusercontent.com/genestream/MonthView/gh-pages/demo/month_view.gif" width=300 />
