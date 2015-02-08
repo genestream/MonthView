@@ -18,6 +18,8 @@ public class MonthViewPager extends ViewPager {
 
     private boolean mScrollEnable = true;
     private MonthViewPagerAdapter mAdapter;
+    private OnMonthChangeListener mOnMonthChangeListener;
+    private OnDayClickListener mOnDayClickListener;
     private OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener() {
         @Override
         public void onPageScrolled(int i, float v, int i2) {
@@ -43,11 +45,10 @@ public class MonthViewPager extends ViewPager {
 
         }
     };
-    private OnMonthChangeListener mOnMonthChangeListener;
-    private OnDayClickListener mOnDayClickListener;
 
     public MonthViewPager(Context context) {
-        this(context, null);
+        super(context);
+        init();
     }
 
     public MonthViewPager(Context context, AttributeSet attrs) {
@@ -122,14 +123,39 @@ public class MonthViewPager extends ViewPager {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (mAdapter != null && mAdapter.getCurrentItem() != null) {
-            MonthView current = mAdapter.getCurrentItem();
-            current.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-            int height = current.getMeasuredHeight() * current.getLine();
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-        }
-
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // find the first child view
+        View view;
+        if (getChildCount() > 1) {
+            view = getChildAt(1);
+        } else {
+            view = getChildAt(0);
+        }
+        if (view != null) {
+            // measure the first child view with the specified measure spec
+            view.measure(widthMeasureSpec, heightMeasureSpec);
+        }
+        setMeasuredDimension(getMeasuredWidth(), measureHeight(heightMeasureSpec, view));
+    }
+
+    private int measureHeight(int measureSpec, View view) {
+        int result = 0;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+
+        if (specMode == MeasureSpec.EXACTLY) {
+            result = specSize;
+        } else {
+            // set the height from the base view if available
+            if (view != null) {
+                result = view.getMeasuredHeight();
+            }
+            if (specMode == MeasureSpec.AT_MOST) {
+                result = Math.min(result, specSize);
+            }
+        }
+        return result;
     }
 
 }

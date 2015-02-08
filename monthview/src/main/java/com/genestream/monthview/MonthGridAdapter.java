@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
+/**
+ * @author kgmyshin
+ */
 public class MonthGridAdapter extends ArrayAdapter<Calendar> {
 
     private static final int NUM_OF_DAYS_IN_WEEK = 7;
@@ -79,7 +82,6 @@ public class MonthGridAdapter extends ArrayAdapter<Calendar> {
                 }
             }
         });
-
 
         if (day.get(Calendar.MONTH) != mDay.get(Calendar.MONTH)) {
             dayView.setTextColor(Color.GRAY);

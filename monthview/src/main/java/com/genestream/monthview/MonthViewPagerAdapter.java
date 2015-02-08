@@ -76,7 +76,7 @@ public class MonthViewPagerAdapter extends PagerAdapter {
 
     public void onChange(Calendar calendar) {
         int month = calendar.get(Calendar.MONTH);
-        if (month == mMonthItemViews[PREV].getMonth()) {
+        if (month == mMonthItemViews[PREV].getDay().get(Calendar.MONTH)) {
             destroyItem(mParent, NEXT, mMonthItemViews[NEXT]);
 
             mMonthItemViews[NEXT] = mMonthItemViews[POINTING];
@@ -90,7 +90,7 @@ public class MonthViewPagerAdapter extends PagerAdapter {
             notifyDataSetChanged();
             mParent.setCurrentItem(POINTING);
 
-        } else if (month == mMonthItemViews[NEXT].getMonth()) {
+        } else if (month == mMonthItemViews[NEXT].getDay().get(Calendar.MONTH)) {
             destroyItem(mParent, PREV, mMonthItemViews[PREV]);
 
             mMonthItemViews[PREV] = mMonthItemViews[POINTING];

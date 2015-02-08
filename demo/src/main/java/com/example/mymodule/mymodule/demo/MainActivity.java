@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.genestream.monthview.MonthViewInfo;
 import com.genestream.monthview.MonthViewPager;
 import com.genestream.monthview.OnDayClickListener;
 import com.genestream.monthview.OnMonthChangeListener;
@@ -25,10 +26,9 @@ public class MainActivity extends Activity {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 4);
         calendar.add(Calendar.MONTH, 1);
-
         monthTextView.setText("" + calendar.get(Calendar.YEAR) + "年" + (calendar.get(Calendar.MONTH) + 1) + "月");
 
-        monthViewPager.setup(calendar, Calendar.MONDAY);
+        monthViewPager.setup(calendar, Calendar.WEDNESDAY);
         monthViewPager.setOnMonthChangeListener(new OnMonthChangeListener() {
             @Override
             public void onChange(Calendar calendar) {
