@@ -6,10 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.genestream.monthview.MonthViewInfo;
-import com.genestream.monthview.MonthViewPager;
-import com.genestream.monthview.OnDayClickListener;
-import com.genestream.monthview.OnMonthChangeListener;
+import jp.co.genestream.monthview.MonthViewPager;
+import jp.co.genestream.monthview.OnDayClickListener;
+import jp.co.genestream.monthview.OnMonthChangeListener;
 
 import java.util.Calendar;
 

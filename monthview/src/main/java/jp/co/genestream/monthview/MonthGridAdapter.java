@@ -1,4 +1,4 @@
-package com.genestream.monthview;
+package jp.co.genestream.monthview;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
+import com.genestream.monthview.R;
 
 import java.util.Calendar;
 

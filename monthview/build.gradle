@@ -32,7 +32,7 @@ uploadArchives {
         mavenDeployer {
             repository url: "file://${repo.absolutePath}"
             pom.version = '0.9.1'             // version
-            pom.groupId = 'com.genestream'    // グループ名
+            pom.groupId = 'jp.co.genestream'    // グループ名
             pom.artifactId = 'monthview' // ライブラリ名
         }
     }

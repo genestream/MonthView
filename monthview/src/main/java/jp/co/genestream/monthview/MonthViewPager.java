@@ -1,4 +1,4 @@
-package com.genestream.monthview;
+package jp.co.genestream.monthview;
 
 import android.animation.LayoutTransition;
 import android.content.Context;

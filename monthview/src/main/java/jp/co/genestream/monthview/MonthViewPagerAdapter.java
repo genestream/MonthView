@@ -1,4 +1,4 @@
-package com.genestream.monthview;
+package jp.co.genestream.monthview;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
