@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.genestream:library:1.0.0' 
+    compile 'jp.co.genestream:library:1.0.0' 
 }
 ```
 
