@@ -14,7 +14,7 @@
         android:textColor="@android:color/white"
         />
 
-    <com.genestream.monthview.MonthViewPager
+    <jp.co.genestream.monthview.MonthViewPager
         android:id="@+id/month_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -18,22 +18,106 @@ android {
     }
 }
 
+//def repo = new File(rootDir, "repository")
+//
+//apply plugin: 'maven'
+//
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository url: "file://${repo.absolutePath}"
+//            pom.version = '0.9.1'             // version
+//            pom.groupId = 'com.genestream'    // グループ名
+//            pom.artifactId = 'monthview' // ライブラリ名
+//        }
+//    }
+//}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+group = 'jp.co.genestream'
+version = '0.9.1'
+def siteUrl = 'https://github.com/genestream/MonthView'
+def gitUrl = 'https://github.com/genestream/MonthView.git'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def bintray_user = properties.getProperty('bintray.user')
+def bintray_api_key = properties.getProperty('bintray.apikey')
+
+bintray {
+    user = bintray_user
+    key = bintray_api_key
+
+    configurations = ['archives'] //When uploading configuration files
+    pkg {
+        repo = 'maven'
+        name = 'monthview'
+        desc = 'MonthView is an android library to display month calendar within the app.'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/genestream/MonthView/issues'
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        labels = ['android']
+        publicDownloadNumbers = true
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'monthview'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'kgmyshin'
+                        name 'shinnosuke kugimiya'
+                        email 'kgmyshin82@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:21.0.+'
 }
 
-def repo = new File(rootDir, "repository")
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
 
-apply plugin: 'maven'
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository url: "file://${repo.absolutePath}"
-            pom.version = '0.9.1'             // version
-            pom.groupId = 'com.genestream'    // グループ名
-            pom.artifactId = 'monthview' // ライブラリ名
-        }
-    }
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+task findConventions << {
+    println project.getConvention()
 }
