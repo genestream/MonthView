@@ -12,13 +12,14 @@ you just add the following to build.gradle.
 
 ```
 repositories {
-    maven { url 'http://genestream.github.com/library/repository' }
+    maven { url 'http://genestream.github.com/MonthView/repository' }
 }
 
 dependencies {
-    compile 'jp.co.genestream:library:1.0.0' 
+    compile 'jp.co.genestream:monthview:0.9.+'
 }
 ```
+**This information will change. We will use jcenter or maven central**
 
 ## Usage
 
